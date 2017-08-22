@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JavaScript Drum Kit</title>
+  <link rel="preload" href="main.css" as="style" onload="this.rel='stylesheet'">
+</head>
+
+<body>
+  <div class="bg">
+    <img src="http://i.imgur.com/9jNUaXT.jpg" alt="background image">
+  </div>
+  <div class="key-container">
+    <div class="key" data-key="65">
+      <kbd>A</kbd>
+      <div class="sound">clap</div>
+    </div>
+    <div class="key" data-key="83">
+      <kbd>S</kbd>
+      <div class="sound">hihat</div>
+    </div>
+    <div class="key" data-key="68">
+      <kbd>D</kbd>
+      <div class="sound">kick</div>
+    </div>
+    <div class="key" data-key="70">
+      <kbd>F</kbd>
+      <div class="sound">openhat</div>
+    </div>
+    <div class="key" data-key="71">
+      <kbd>G</kbd>
+      <div class="sound">boom</div>
+    </div>
+    <div class="key" data-key="72">
+      <kbd>H</kbd>
+      <div class="sound">ride</div>
+    </div>
+    <div class="key" data-key="74">
+      <kbd>J</kbd>
+      <div class="sound">snare</div>
+    </div>
+    <div class="key" data-key="75">
+      <kbd>K</kbd>
+      <div class="sound">tom</div>
+    </div>
+    <div class="key" data-key="76">
+      <kbd>L</kbd>
+      <div class="sound">tink</div>
+    </div>
+  </div>
+  <div class="audio-container">
+    <audio src="sounds/clap.wav" data-key="65"></audio>
+    <audio src="sounds/hihat.wav" data-key="83"></audio>
+    <audio src="sounds/kick.wav" data-key="68"></audio>
+    <audio src="sounds/openhat.wav" data-key="70"></audio>
+    <audio src="sounds/boom.wav" data-key="71"></audio>
+    <audio src="sounds/ride.wav" data-key="72"></audio>
+    <audio src="sounds/snare.wav" data-key="74"></audio>
+    <audio src="sounds/tom.wav" data-key="75"></audio>
+    <audio src="sounds/tink.wav" data-key="76"></audio>
+  </div>
+  <script>
+    const removeTransition = (e) => {
+      if (e.propertyName !== 'transform') return;
+      e.target.classList.remove('is-active');
+    };
+    const playSound = (sound) => {
+      const currentKey = document.querySelector(`.key[data-key="${sound.dataset.key}"]`);
+      currentKey.classList.add('is-active');
+      sound.currentTime = 0;
+      sound.play();
+    };
+    const handleKeydown = (e) => {
+      const sound = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      return sound ? playSound(sound) : false;
+    };
+    const handleClick = (e) => {
+      const targetKey = e.currentTarget.dataset.key;
+      const sound = document.querySelector(`audio[data-key="${targetKey}"]`);
+      return sound ? playSound(sound) : false;
+    };
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => {
+      key.addEventListener('click', handleClick);
+      key.addEventListener('transitionend', removeTransition);
+    });
+
+    window.addEventListener('keydown', handleKeydown);
+  </script>
+</body>
+
+</html>
