@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS + JS Clock</title>
+  <link rel="preload" href="main.css" as="style" onload="this.rel='stylesheet'">
+</head>
+
+<body>
+  <div class="bg-container"><img src="http://i.imgur.com/kO2WIqr.jpg" alt="background image" class="bg"></div>
+  <main>
+    <div id="clock" class="clock">
+      <div class="clock__bar bar-hour"></div>
+      <div class="clock__bar bar-minute"></div>
+      <div class="clock__bar bar-second"></div>
+    </div>
+    <div class="digital">現在時刻<span id="now_time"></span></div>
+  </main>
+  <script>
+    const currentTime = () => {
+      const now = new Date();
+      return {
+        hour: now.getHours(),
+        minute: now.getMinutes(),
+        second: now.getSeconds()
+      };
+    };
+    const time2Degree = (time, type) => {
+      if (type === 'hour') {
+        return (((time / 12) * 360) - 90);
+      }
+      return (((time / 60) * 360) - 90);
+    };
+    const setCSSProp = (el, prop, value) => {
+      el.style.setProperty(`--${prop}`, value);
+    };
+    setInterval(() => {
+      const clock = document.querySelector('#clock');
+      now_time.innerHTML = (` ${currentTime().hour} 點 ${(currentTime().minute + '').padStart(2, 0)} 分 ${(currentTime().second + '').padStart(2, 0)} 秒`);
+      setCSSProp(clock, 'angle-second', time2Degree(currentTime().second) + 'deg');
+      setCSSProp(clock, 'angle-minute', time2Degree(currentTime().minute) + 'deg');
+      setCSSProp(clock, 'angle-hour', time2Degree(currentTime().hour, 'hour') + 'deg');
+    }, 1000);
+  </script>
+</body>
+
+</html>
