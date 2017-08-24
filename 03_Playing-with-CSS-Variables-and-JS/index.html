@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Playing with CSS Variables and JS</title>
+  <link rel="preload" href="main.css" as="style" onload="this.rel='stylesheet'">
+</head>
+
+<body>
+  <h1 class="title">Changing CSS Variables with <span>JS</span></h1>
+  <div class="container">
+    <div class="controls">
+      <label for="input-padding" class="label">
+        <div class="text">padding</div>
+        <input id="input-padding" type="range" class="input" min="0" max="50" value="10" data-suffix="px">
+      </label>
+      <label for="input-blur" class="label">
+        <div class="text">blur</div>
+        <input id="input-blur" type="range" class="input" min="0" max="10" value="0" data-suffix="px">
+      </label>
+      <label for="input-color" class="label">
+        <div class="text">color</div>
+        <input id="input-color" type="color" class="input" value="#03D2FE">
+      </label>
+    </div>
+    <div class="img-container"><img src="http://i.imgur.com/kABxZg1.jpg" alt="mountain image" class="img"></div>
+  </div>
+  <script>
+    const getSuffix = (el) => el.dataset.suffix;
+    const handleInputChange = (e) => {
+      const value = e.target.value;
+      const suffix = getSuffix(e.target) || '';
+      document.documentElement.style.setProperty(`--${e.target.id}`, `${value + suffix}`);
+    };
+    const controls = document.querySelectorAll('.controls .input');
+    controls.forEach(input => input.addEventListener('change', handleInputChange));
+    controls.forEach(input => input.addEventListener('input', handleInputChange));
+  </script>
+</body>
+
+</html>
