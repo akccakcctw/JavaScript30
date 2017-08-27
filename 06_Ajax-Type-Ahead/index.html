@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>AJAX Type Ahead</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<form class="search-form">
+  <input type="text" class="input search" placeholder="City or State">
+  <ul class="suggestions">
+    <li>Filter for a city</li>
+    <li>or a state</li>
+  </ul>
+</form>
+<script>
+  const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+  const cities = [];
+  fetch(endpoint)
+    .then(blob => blob.json())
+    .then(data => cities.push(...data));
+  const handleSearch = (str) => cities.filter(obj => {
+    return obj.city.toLowerCase().includes(str) ||
+      obj.state.toLowerCase().includes(str);
+  });
+
+  const printList = () => {
+    const matches = handleSearch(inputEl.value.toLowerCase());
+    const output = matches.map(obj => {
+      return `
+        <li>
+          <span class="name">${obj.city}, ${obj.state}</span>
+      <span class="population">${obj.population}</span>
+    </li>
+    `;
+    }).join(''); suggestions.innerHTML = output;
+  }; const suggestions = document.querySelector('.suggestions'); const inputEl
+    = document.querySelector('.search'); inputEl.addEventListener('change', printList); inputEl.addEventListener('keyup',
+      printList);
+
+</script>
+
+<body>
+
+</body>
+
+</html>
