@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Array Cardio 💪💪</title>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      background-color: #F7F7F7;
+      color: #333;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .order-list {
+      background-color: #333;
+      color: #aaa;
+      padding: 1em 2em;
+      font-family: monospace;
+      text-align: left;
+    }
+
+    .order-list li {
+      padding-top: .25em;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Array Cardio Day 2</h1>
+  <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
+  <p>Questions:</p>
+  <ol class="order-list">
+    <li>Is at least one person 19 or older?</li>
+    <li>Is everyone 19 or older?</li>
+    <li>Find the comment with the ID of 823423</li>
+    <li>Find the comment with this ID</li>
+    <li>delete the comment with the ID of 823423</li>
+  </ol>
+  <script>
+    const people = [
+      { name: 'Wes', year: 1988 },
+      { name: 'Kait', year: 1986 },
+      { name: 'Irv', year: 1970 },
+      { name: 'Lux', year: 2015 }
+    ];
+    console.log('%cpeople:', 'color:#F7F7F7;background:#333;font-size:1.4rem');
+    console.table(people);
+
+    const comments = [
+      { text: 'Love this!', id: 523423 },
+      { text: 'Super good', id: 823423 },
+      { text: 'You are the best', id: 2039842 },
+      { text: 'Ramen is my fav food ever', id: 123523 },
+      { text: 'Nice Nice Nice!', id: 542328 },
+    ];
+    console.log('%ccomments:', 'color:#F7F7F7;background:#333;font-size:1.4rem');
+    console.table(comments);
+
+    // 1. Is at least one person 19 or older?
+    const hasAdult = (arr) => arr.some(person => (new Date().getFullYear() - person.year) >= 19);
+    console.log('1:', hasAdult(people));
+
+    // 2. Is everyone 19 or older?
+    const allAdult = (arr) => arr.every(person => (new Date().getFullYear() - person.year) >= 19);
+    console.log('2:', allAdult(people));
+
+    // 3. Find the `comment` with the ID of 823423
+    const findById = (arr, id) => arr.find(comment => comment.id === id);
+    console.log('3:', findById(comments, 823423));
+
+    // 4. Find the comment index with this ID
+    const findIndexById = (arr, id) => arr.findIndex(comment => comment.id === id);
+    console.log('4:', findIndexById(comments, 823423));
+
+    // 5. Delete the comment with the ID of 823423
+    const deleteCommentById = (arr, id) => {
+      const idx = findIndexById(comments, id)
+      return [
+        ...arr.slice(0, idx),
+        ...arr.slice(idx + 1)
+      ];
+    };
+    console.log('5:', deleteCommentById(comments, 823423));
+  </script>
+</body>
+
+</html>
