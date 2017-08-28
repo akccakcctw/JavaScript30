@@ -9,3 +9,4 @@
 - 04 [Array Cardio Day 1](https://akccakcctw.github.io/JavaScript30/04_Array-Cardio-Day-1/)
 - 05 [Flex Panels Image Gallery](https://akccakcctw.github.io/JavaScript30/05_Flex-Panels-Image-Gallery/)
 - 06 [AJAX Type Ahead](https://akccakcctw.github.io/JavaScript30/06_Ajax-Type-Ahead/)
+- 07 [Array Cardio Day 1](https://akccakcctw.github.io/JavaScript30/07_Array-Cardio-Day-2/)
