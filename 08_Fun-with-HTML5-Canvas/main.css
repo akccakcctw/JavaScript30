@@ -13,29 +13,56 @@ body {
   width: 100%;
   height: 100%;
   background: var(--c-base);
+  font-family: monospace;
 }
 
 .controls {
   border: 1px solid transparent;
   background: #EBEAE7;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, .5);
+  display: flex;
+}
+
+.controls .preview {
+  flex: 1;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.controls .sliders {
+  flex: 9;
 }
 
 .controls .slider-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin: .5rem auto;
+  position: relative;
 }
 
 .controls .slider {
   width: 90%;
-  height: 25px;
-  border: 2px solid transparent;
+  height: 20px;
+  border: none;
   border-radius: 20px;
   box-shadow: inset 1px 1px 3px rgba(0, 0, 0, .5);
   cursor: pointer;
+  margin: 0 15px;
+  max-width: 500px;
   position: relative;
+}
+
+.controls .slider-container:before {
+  content: '';
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0.2)), linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0.2));
+  background-size: 20px 20px;
+  background-position: 0px 0px, 10px 10px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .controls .slider .handle {
