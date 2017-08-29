@@ -26,11 +26,16 @@ const updateHandlePosition = (handle, offsetX) => {
   handle.style.left = `${offsetX}px`;
 };
 const updateHandleValue = (handle, offsetX) => {
-
+  const inputEl = handle.parentNode.parentNode.querySelector('.input');
+  const sliderW = handle.parentNode.parentNode.querySelector('.slider').offsetWidth;
+  const percent = Math.ceil(offsetX / sliderW * 100)
+  inputEl.value = Math.ceil(inputEl.max * percent / 100);
 }
+
 const sliderDownHandler = (e) => {
   const currentHandle = e.currentTarget.querySelector('.handle');
   updateHandlePosition(currentHandle, e.offsetX);
+  updateHandleValue(currentHandle, e.offsetX);
 };
 
 const sliderUpHandler = (e) => {
