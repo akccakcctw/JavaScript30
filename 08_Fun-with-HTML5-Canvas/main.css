@@ -1,0 +1,54 @@
+:root {
+  --c-base: #F1F1F1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: var(--c-base);
+}
+
+.controls {
+  border: 1px solid transparent;
+  background: #EBEAE7;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, .5);
+}
+
+.controls .slider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: .5rem auto;
+}
+
+.controls .slider {
+  width: 90%;
+  height: 25px;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, .5);
+  cursor: pointer;
+  position: relative;
+}
+
+.controls .slider .handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, .5);
+  background-color: var(--c-base);
+}
+
+.controls .label {
+  width: 10%;
+}
+
+.controls .input {}
