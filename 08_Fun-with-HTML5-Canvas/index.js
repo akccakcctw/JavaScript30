@@ -11,27 +11,35 @@ const dragHandler = (e) => {
 
 };
 const handleDownHandler = (e) => {
+  isDragging[getCurrentSlider(e)] = true;
 
 };
 const handleUpHandler = (e) => {
+  isDragging[getCurrentSlider(e)] = false;
 };
 const getCurrentSlider = (e) => {
   if (!e.target.closest('.slider-container')) return;
   return e.target.closest('.slider-container').querySelector('input').id;
 };
+const updateHandlePosition = (handle, offsetX) => {
+  offsetX = Math.max(0, offsetX - 20); // handle width = 20px
+  handle.style.left = `${offsetX}px`;
+};
+const updateHandleValue = (handle, offsetX) => {
+
+}
 const sliderDownHandler = (e) => {
-  isDragging[getCurrentSlider(e)] = true;
+  const currentHandle = e.currentTarget.querySelector('.handle');
+  updateHandlePosition(currentHandle, e.offsetX);
 };
 
 const sliderUpHandler = (e) => {
-  isDragging[getCurrentSlider(e)] = false;
 };
 
 const handleMousemove = (e) => {
   if (!isDragging[getCurrentSlider(e)]) return;
-  console.log(e.target, e, e.offsetX);
   const currentHandle = e.currentTarget.querySelector('.handle');
-  currentHandle.style.left = `${e.offsetX}px`;
+  updateHandlePosition(currentHandle, e.offsetX);
 };
 
 handles.forEach(handle => handle.addEventListener('mousedown', handleDownHandler));
