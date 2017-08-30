@@ -11,3 +11,4 @@
 - 06 [AJAX Type Ahead](https://akccakcctw.github.io/JavaScript30/06_Ajax-Type-Ahead/)
 - 07 [Array Cardio Day 1](https://akccakcctw.github.io/JavaScript30/07_Array-Cardio-Day-2/)
 - 08 [Fun with HTML5 Canvas](https://akccakcctw.github.io/JavaScript30/08_Fun-with-HTML5-Canvas/)
+- 09 [Dev Tools Domination](https://akccakcctw.github.io/JavaScript30/09_Dev-Tools-Domination/)
