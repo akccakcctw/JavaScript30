@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+  <style>
+     :root {
+      --c-base: #F1F1F1;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      background-color: var(--c-base);
+      font-family: monospace;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    p {
+      transition: .3s ease;
+      margin: 1em auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+  <span>Have a look at your console.</span>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+    const p = document.querySelector('p');
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+
+    // Regular
+    console.log('Regular console.log');
+
+    // Interpolated
+    console.log('Interpolated %s', 'strings.');
+
+    // Styled
+    console.log('%c Styled strings.', 'font-size: 1.8em; color: red; text-shadow: 1px 1px 3px blue;');
+
+    // warning!
+    console.warn('Warning!');
+
+    // Error :|
+    console.error('Error!');
+
+    // Info
+    console.info('Today is %s', new Date()); // 不知道為啥 icon 不見了
+
+    // Testing
+    console.assert(false, 'Something went wrong!');
+
+    // clearing
+    // console.clear();
+
+    // Viewing DOM Elements
+    console.log(p);
+
+    // Grouping together
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`);
+      console.log(`${dog.name}`);
+      console.log(`My name is ${dog.name}`);
+      console.log(`I am ${dog.age} years old`);
+      console.log(`a.k.a. ${dog.age * 7} dog years old`);
+      console.groupEnd();
+    });
+
+    // counting
+    console.count('test');
+    console.count('test');
+    console.count('test');
+    console.count('test');
+
+    // timing
+    console.time('fetch data from github api');
+    fetch('https://api.github.com/users/akccakcctw')
+      .then((data) => data.json())
+      .then((data) => {
+        console.log(data);
+        console.timeEnd('fetch data from github api');
+      });
+  </script>
+</body>
+
+</html>
