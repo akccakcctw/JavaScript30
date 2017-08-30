@@ -81,7 +81,6 @@ const dragHandler = (e) => {
 };
 const handleDownHandler = (e) => {
   isDragging[getCurrentSlider(e)] = true;
-
 };
 const handleUpHandler = (e) => {
   isDragging[getCurrentSlider(e)] = false;

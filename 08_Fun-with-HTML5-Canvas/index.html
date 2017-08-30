@@ -59,10 +59,9 @@
   </main>
   <script>
     // functions
-
     const handleDraw = (e) => {
       if (!isTouched) return;
-      ctx.strokeStyle = `hsla(${hue}, 100%, 50%, .1)`;
+      ctx.strokeStyle = `hsla(${inputs.h.value}, ${inputs.s.value}%, ${inputs.l.value}%, ${inputs.a.value})`;
       ctx.beginPath();
       ctx.moveTo(lastX, lastY);
       ctx.lineTo(e.offsetX, e.offsetY);
@@ -70,7 +69,7 @@
       ctx.stroke();
 
       [lastX, lastY] = [e.offsetX, e.offsetY];
-      (hue >= 360) ? hue = 0 : hue++;
+      // auto update lineWidth
       (ctx.lineWidth > 100 || ctx.lineWidth < 10) ? widthDirection *= -1 : true;
       widthDirection > 0 ? ctx.lineWidth++ : ctx.lineWidth--;
       console.log(ctx.lineWidth, widthDirection);
@@ -89,12 +88,12 @@
     let hue = 0;
     let widthDirection = 1;
 
-
-
-    canvas.addEventListener('mousedown', (e) => {
+    const handleMouseDownHandler = (e) => {
       isTouched = true;
       [lastX, lastY] = [e.offsetX, e.offsetY];
-    });
+    };
+
+    canvas.addEventListener('mousedown', handleMouseDownHandler);
     canvas.addEventListener('mousemove', handleDraw);
     canvas.addEventListener('mouseup', () => isTouched = false);
     canvas.addEventListener('mouseleave', () => isTouched = false);
