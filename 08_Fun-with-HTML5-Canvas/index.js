@@ -116,7 +116,9 @@ const sliderUpHandler = (e) => {
 
 const handleMousemove = (e) => {
   if (!isDragging[getCurrentSlider(e)]) return;
-  const currentHandle = e.currentTarget.querySelector('.handle');
+  if (e.target !== e.currentTarget) return;// work around
+  const currentHandle = e.currentTarget.parentNode.querySelector('.handle');
+  updateHandlePosition(currentHandle, e.offsetX);
   updateHandlePosition(currentHandle, e.offsetX);
   updateHandleValue(currentHandle, e.offsetX);
   updateHsla();
@@ -127,7 +129,7 @@ handles.forEach(handle => handle.addEventListener('mousedown', handleDownHandler
 handles.forEach(handle => handle.addEventListener('mouseup', handleUpHandler));
 sliders.all.forEach(slider => slider.addEventListener('mousedown', sliderDownHandler));
 sliders.all.forEach(slider => slider.addEventListener('mouseup', sliderUpHandler));
-sliders.all.forEach(slider => slider.addEventListener('mousemove', handleMousemove));
+sliders.all.forEach(slider => slider.addEventListener('mousemove', handleMousemove, false));
 window.addEventListener('mouseup', (e) => {
   Object.keys(isDragging).forEach(key => {
     isDragging[key] = false;
