@@ -20,6 +20,7 @@ const gradients = {
   l: [],
   a: [],
 };
+let currentSlider;
 let isDragging = {
   h: false,
   s: false,
@@ -81,6 +82,7 @@ const dragHandler = (e) => {
 };
 const handleDownHandler = (e) => {
   isDragging[getCurrentSlider(e)] = true;
+  currentSlider = getCurrentSlider(e);
 };
 const handleUpHandler = (e) => {
   isDragging[getCurrentSlider(e)] = false;
@@ -115,21 +117,37 @@ const sliderUpHandler = (e) => {
 };
 
 const handleMousemove = (e) => {
-  if (!isDragging[getCurrentSlider(e)]) return;
-  if (e.target !== e.currentTarget) return;// work around
-  const currentHandle = e.currentTarget.parentNode.querySelector('.handle');
-  updateHandlePosition(currentHandle, e.offsetX);
-  updateHandlePosition(currentHandle, e.offsetX);
-  updateHandleValue(currentHandle, e.offsetX);
-  updateHsla();
-  updateSliderBg();
+  if (!isDragging[currentSlider]) return;
+  const currentPosition = e.pageX || e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+  const currentSliderEl = document.querySelector(`.${currentSlider}-slider .slider`);
+  const currentHandleEl = document.querySelector(`.${currentSlider}-slider .handle`);
+  const bounds = {
+    handle: {
+      top: currentHandleEl.getBoundingClientRect().top,
+      left: currentHandleEl.getBoundingClientRect().left,
+      right: currentHandleEl.getBoundingClientRect().right,
+    },
+    slider: {
+      top: currentSliderEl.getBoundingClientRect().top,
+      left: currentSliderEl.getBoundingClientRect().left,
+      right: currentSliderEl.getBoundingClientRect().right,
+    }
+  };
+  if (((bounds.handle.left + bounds.handle.right) / 2) !== currentPosition &&
+    currentPosition > bounds.slider.left &&
+    currentPosition < bounds.slider.right) {
+    currentHandleEl.style.left = `${currentPosition - bounds.slider.left}px`;
+    updateHandleValue(currentHandleEl, currentPosition - bounds.slider.left);
+    updateHsla();
+    updateSliderBg();
+  }
 };
 
 handles.forEach(handle => handle.addEventListener('mousedown', handleDownHandler));
 handles.forEach(handle => handle.addEventListener('mouseup', handleUpHandler));
 sliders.all.forEach(slider => slider.addEventListener('mousedown', sliderDownHandler));
 sliders.all.forEach(slider => slider.addEventListener('mouseup', sliderUpHandler));
-sliders.all.forEach(slider => slider.addEventListener('mousemove', handleMousemove, false));
+document.body.addEventListener('mousemove', handleMousemove);
 window.addEventListener('mouseup', (e) => {
   Object.keys(isDragging).forEach(key => {
     isDragging[key] = false;
