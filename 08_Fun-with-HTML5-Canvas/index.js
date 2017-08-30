@@ -26,7 +26,12 @@ let isDragging = {
   l: false,
   a: false
 };
-const updateHsla = (h, s, l, a) => {
+const updateHsla = (
+  h = inputs.h.value,
+  s = inputs.s.value,
+  l = inputs.l.value,
+  a = inputs.a.value) => {
+
   const updateHueList = (s, l, a) => {
     Array.from(Array(37)).forEach((v, i) => {
       gradients.h[i] = `hsla(${i * 10}, ${s}%, ${l}%, ${a})`;
@@ -68,7 +73,7 @@ const updatePreview = (h, s, l, a) => {
   previewEl.style.background = `hsla(${h}, ${s}%, ${l}%, ${a})`;
 };
 
-updateHsla(inputs.h.value, inputs.s.value, inputs.l.value, inputs.a.value);
+updateHsla();
 updateSliderBg();
 updatePreview(inputs.h.value, inputs.s.value, inputs.l.value, inputs.a.value);
 const dragHandler = (e) => {
@@ -82,7 +87,6 @@ const handleUpHandler = (e) => {
   isDragging[getCurrentSlider(e)] = false;
 };
 const getCurrentSlider = (e) => {
-  console.log(e);
   if (!e.target.closest('.slider-container')) return;
   return e.target.closest('.slider-container').querySelector('input').id;
 };
@@ -104,7 +108,7 @@ const sliderDownHandler = (e) => {
   const currentHandle = e.currentTarget.querySelector('.handle');
   updateHandlePosition(currentHandle, e.offsetX);
   updateHandleValue(currentHandle, e.offsetX);
-  updateHsla(inputs.h.value, inputs.s.value, inputs.l.value, inputs.a.value)
+  updateHsla();
   updateSliderBg();
 };
 
@@ -115,6 +119,9 @@ const handleMousemove = (e) => {
   if (!isDragging[getCurrentSlider(e)]) return;
   const currentHandle = e.currentTarget.querySelector('.handle');
   updateHandlePosition(currentHandle, e.offsetX);
+  updateHandleValue(currentHandle, e.offsetX);
+  updateHsla();
+  updateSliderBg();
 };
 
 handles.forEach(handle => handle.addEventListener('mousedown', handleDownHandler));
@@ -123,5 +130,7 @@ sliders.all.forEach(slider => slider.addEventListener('mousedown', sliderDownHan
 sliders.all.forEach(slider => slider.addEventListener('mouseup', sliderUpHandler));
 sliders.all.forEach(slider => slider.addEventListener('mousemove', handleMousemove));
 window.addEventListener('mouseup', (e) => {
-  isDragging[getCurrentSlider(e)] = false;
+  Object.keys(isDragging).forEach(key => {
+    isDragging[key] = false;
+  });
 });
