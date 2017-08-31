@@ -12,3 +12,4 @@
 - 07 [Array Cardio Day 1](https://akccakcctw.github.io/JavaScript30/07_Array-Cardio-Day-2/)
 - 08 [Fun with HTML5 Canvas](https://akccakcctw.github.io/JavaScript30/08_Fun-with-HTML5-Canvas/)
 - 09 [Dev Tools Domination](https://akccakcctw.github.io/JavaScript30/09_Dev-Tools-Domination/)
+- 10 [Hold Shift to Check Multiple Checkboxes](https://akccakcctw.github.io/JavaScript30/10_Hold-Shift-to-Check-Multiple-Checkboxes/)
