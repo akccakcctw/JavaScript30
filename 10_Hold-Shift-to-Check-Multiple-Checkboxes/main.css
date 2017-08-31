@@ -1,0 +1,76 @@
+:root {
+  --c-base: #F1F1F1;
+  --c-grey--light: #CCC;
+  --c-grey: #777;
+  --c-grey--darken: #333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--c-grey--light);
+  font-family: monospace;
+  letter-spacing: 1.15px;
+}
+
+.check-list {
+  box-shadow: 3px 2px 3px var(--c-grey);
+  width: 80%;
+  margin: 2rem auto;
+  background: var(--c-base);
+}
+
+.check-list .row {
+  display: flex;
+  border-bottom: 1px solid var(--c-grey);
+}
+
+.check-list .label {
+  padding: 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.check-list .input {
+  background: #FFF;
+  border: none;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.check-list .styled-input {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--c-grey);
+  border-radius: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.check-list .input:checked+.styled-input {
+  background: var(--c-grey);
+}
+
+.check-list .content {
+  border-left: 1px solid var(--c-grey);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: .5em .8em;
+}
+
+.check-list .label.is-done+.content p {
+  text-decoration: line-through;
+  opacity: .3;
+}
+
+.check-list .content p {}
