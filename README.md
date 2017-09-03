@@ -14,3 +14,4 @@
 - 09 [Dev Tools Domination](https://akccakcctw.github.io/JavaScript30/09_Dev-Tools-Domination/)
 - 10 [Hold Shift to Check Multiple Checkboxes](https://akccakcctw.github.io/JavaScript30/10_Hold-Shift-to-Check-Multiple-Checkboxes/)
 - 11 [Custom Video Player](https://akccakcctw.github.io/JavaScript30/11_Custom-Video-Player/)
+- 12 [Key Sequence Detection](https://akccakcctw.github.io/JavaScript30/12_Key-Sequence-Detection/)
