@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Key Sequence Detection</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      background-color: #F1F1F1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: monospace;
+      transition: .5s ease;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    .konami {
+      background: #000;
+      color: #F1F1F1;
+    }
+
+    .k_text {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    press: <strong style="font-size: 26px;color:darkblue;">↑↑↓↓←→←→BA<strong>
+  </div>
+  <script>
+    const pressed = [];
+    const secret = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    const appendEl = (html, { tag = 'div', className, parentEl = document.body, prop }) => {
+      const newEl = document.createElement(tag);
+      if (html) newEl.innerHTML = html;
+      if (className) newEl.classList.add(className);
+      if (prop) {
+        Object.keys(prop).forEach(key => {
+          newEl.setAttribute(key, prop[key]);
+        });
+      }
+      parentEl.appendChild(newEl);
+      return newEl;
+    }
+    window.addEventListener('keyup', (e) => {
+      pressed.push(e.key);
+      pressed.splice(-secret.length - 1, pressed.length - secret.length);
+      if (pressed.join('').includes(secret.join(''))) {
+        document.body.classList.add('konami');
+        appendEl('KONAMI CODE detected', { className: 'k_text' });
+        appendEl('', { tag: 'img', prop: { src: 'http://i.imgur.com/LZoV7T7.jpg' } });
+      }
+    });
+  </script>
+</body>
+
+</html>
