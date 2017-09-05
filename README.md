@@ -16,3 +16,4 @@
 - 11 [Custom Video Player](https://akccakcctw.github.io/JavaScript30/11_Custom-Video-Player/)
 - 12 [Key Sequence Detection](https://akccakcctw.github.io/JavaScript30/12_Key-Sequence-Detection/)
 - 13 [Slide In on Scroll](https://akccakcctw.github.io/JavaScript30/13_Slide-In-on-Scroll/)
+- 14 [JavaScript References VS Copying](https://akccakcctw.github.io/JavaScript30/14_JavaScript-References-VS-Copying/)
