@@ -17,3 +17,4 @@
 - 12 [Key Sequence Detection](https://akccakcctw.github.io/JavaScript30/12_Key-Sequence-Detection/)
 - 13 [Slide In on Scroll](https://akccakcctw.github.io/JavaScript30/13_Slide-In-on-Scroll/)
 - 14 [JavaScript References VS Copying](https://akccakcctw.github.io/JavaScript30/14_JavaScript-References-VS-Copying/)
+- 15 [LocalStorage](https://akccakcctw.github.io/JavaScript30/15_LocalStorage/)
