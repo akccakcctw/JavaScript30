@@ -19,3 +19,4 @@
 - 14 [JavaScript References VS Copying](https://akccakcctw.github.io/JavaScript30/14_JavaScript-References-VS-Copying/)
 - 15 [LocalStorage](https://akccakcctw.github.io/JavaScript30/15_LocalStorage/)
 - 16 [Mouse Move Shadow](https://akccakcctw.github.io/JavaScript30/16_Mouse-Move-Shadow/)
+- 17 [Sort Without Articles](https://akccakcctw.github.io/JavaScript30/17_Sort-Without-Articles/)
