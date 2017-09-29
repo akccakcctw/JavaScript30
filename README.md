@@ -21,3 +21,5 @@
 - 16 [Mouse Move Shadow](https://akccakcctw.github.io/JavaScript30/16_Mouse-Move-Shadow/)
 - 17 [Sort Without Articles](https://akccakcctw.github.io/JavaScript30/17_Sort-Without-Articles/)
 - 18 [Adding Up Times with Reduce](https://akccakcctw.github.io/JavaScript30/18_Adding-Up-Times-with-Reduce/)
+- 19 [Unreal Webcam Fun](https://akccakcctw.github.io/JavaScript30/19_Unreal-Webcam-Fun/)
+- 20 [Speech Detection](https://akccakcctw.github.io/JavaScript30/20_Speech-Detection/)
